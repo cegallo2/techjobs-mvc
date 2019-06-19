@@ -27,5 +27,17 @@
         </div>
     </div>
 
+    <div th:fragment="loop-jobs">
+        <h3 th:text="${jobs_total != null}? ${jobs_total} + ' Result(s)' : ''"></h3>
+        <span th:each="job : ${jobs}">
+            <table class="job-listing">
+            <tr th:each="item : ${job}" >
+                <th th:text="${#strings.capitalizeWords(item.key)} + ':'"></th>
+                <td><a th:href="@{/list/jobs(column=${item.key}, value=${item.value})}" th:text="${item.value}"></a></td>
+            </tr>
+            </table>
+        </span>
+    </div>
+
 </body>
 </html>
